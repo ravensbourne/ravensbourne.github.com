@@ -1,0 +1,13 @@
+auto: true
+server: true
+permalink: none
+baseurl: ""
+exclude:
+prose:
+  rooturl: "_posts"
+  metadata:
+    "_posts/projects": |
+      title:    "Title of your article"
+      abstract: "Abstract"
+- .gitignore
+- README.md
