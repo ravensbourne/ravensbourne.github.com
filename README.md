@@ -1,6 +1,6 @@
 # Ken Ravensbourne
 
-A Visual Knowledge Browser for research projects at Ravensbourne UK.
+A Visual Knowledge Browser for student projects at Ravensbourne UK.
 
 ## Goals
 
