@@ -1,18 +1,18 @@
 # Ken Ravensbourne
 
-A Visual Knowledge Browser for student projects at Ravensbourne UK.
+A Visual Knowledge Browser to exhibit student projects at Ravensbourne UK.
 
 ## Goals
 
 - Guided Exploration of Student projects
 - Filter by facets + search
-- An easy publishing workflow (add and edit projects)
+- Details on demand
+- An easy publishing workflow (add and update projects)
 - Extensible
 
 ## View projects
 
 ![](http://f.cl.ly/items/152u330J0N3i3l0a432R/layout.png)
-
 
 ## Adding a new project
 
