@@ -10,6 +10,15 @@ A Visual Knowledge Browser to exhibit student projects at Ravensbourne UK.
 - An easy publishing workflow (add and update projects)
 - Extensible
 
+
+## Why?
+
+Employing the Project Browser, users will be able to answer the following questions regarding a given set of documents:
+- Which projects are done in Javascript?
+- Which projects involve both Technologies, Javascript and Flash?
+- The all or nothing question: “Which projects are relevant?”
+
+
 ## View projects
 
 ![](http://f.cl.ly/items/152u330J0N3i3l0a432R/layout.png)
