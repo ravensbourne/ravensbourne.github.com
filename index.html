@@ -1,30 +1,84 @@
----
-layout: default
-permalink: /
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Ken - Visual Knowledge Browser</title>
 
-<div class="start">
-  {% include menu.html %}
-  <div class="plot">
-    <p>
-      <strong>Ken Ravensbourne</strong> is a digital repository of research projects.
-    </p>
-    <p class="smaller">
-      You can use a visual tool to explore research projects by different aspects.
-    </p>
-  </div>
-</div>
+    <!-- Browser  -->
+    <script type="text/x-ejs-template" name="browser">
+      <div id="facets"></div>
+      <div id="matrix" class="surface">Loading...</div>
+      <div id="details"></div>
+    </script>
 
-<div class="content">
-  <p>Choose a project.</p>
-</div>
+    <!-- Item  -->
+    <script type="text/x-ejs-template" name="item">
+      <div class="item"><%= item.properties.name %></div>
+    </script>
 
-<div class="project-listing">
-  {% for item in site.categories.projects reversed limit:40 offset:0 %}
-    <a class="project" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
-      <div class="title">{{item.title}}</div>
-      <div class="author">by {{item.author}}</div>
-      <div class="abstract">{{item.abstract}}</div>
-    </a>
-  {% endfor %}
-</div>
+    <!-- Facets -->
+    <script type="text/x-ejs-template" name="facets">
+      <!--<h1>Filters</h1>-->
+      <% var count = 0; %>
+      <% _.each(facets, function(f, key) { %>
+        <div class="filter">
+          <div class="filter-name"><%= f.name %></div>
+
+          <div class="selected-values">
+            <% _.each(f.selectedValues, function(val) { %>
+              <a href="#" class="value remove" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val %> </a>
+            <% }); %>
+          </div>
+
+          <div class="available-values">
+            <% _.each(f.availableValues, function(val) { %>
+              <a href="#" class="value add" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val %> (<%= val.objects.length %>)</a>
+            <% }); %>
+          </div>
+        </div>
+      <% }); %>
+    </script>
+
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/underscore.js"></script>
+    <script type="text/javascript" src="lib/data.js"></script>
+    <script type="text/javascript" src="lib/backbone.js"></script>
+
+    <!-- Data -->
+    <script type="text/javascript" src="data/seed.js"></script>
+
+    <script type="text/javascript" src="src/util.js"></script>
+    <script type="text/javascript" src="src/model.js"></script>
+
+    <!-- Application -->
+    <script type="text/javascript" src="src/ken.js"></script>
+
+    <script type="text/javascript" src="src/app.js"></script>
+
+    <script type="text/javascript">
+      $(function() {
+        window.app = new Application();
+        app.render();
+
+        // Start responding to routes
+        window.router = new Router({});
+        Backbone.history.start();
+      });
+    </script>
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" media="all" href="stylesheets/reset.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="stylesheets/style.css"/>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        
+      </div>
+      <div id="main">
+        Main Content
+      </div>
+    </div>
+  </body>
+</html>
+

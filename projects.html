@@ -3,14 +3,28 @@ layout: default
 permalink: /projects/
 ---
 
-<div class="projects">
+<div class="start">
   {% include menu.html %}
-  <div class="article-navigation">
-
-    {% for item in site.categories.projects reversed limit:40 offset:0 %}
-      <a class="article-link{% if item.title contains "Content" %} active{% endif %}" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
-        <div class="title" style="padding-top: 36px;">{{item.title}}</div>
-      </a>
-    {% endfor %}
+  <div class="plot">
+    <p>
+      <strong>Ken Ravensbourne</strong> is a digital repository of research projects.
+    </p>
+    <p class="smaller">
+      You can use a visual tool to explore research projects by different aspects.
+    </p>
   </div>
+</div>
+
+<div class="content">
+  <p>Choose a project.</p>
+</div>
+
+<div class="project-listing">
+  {% for item in site.categories.projects reversed limit:40 offset:0 %}
+    <a class="project" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
+      <div class="title">{{item.title}}</div>
+      <div class="author">by {{item.author}}</div>
+      <div class="abstract">{{item.abstract}}</div>
+    </a>
+  {% endfor %}
 </div>
