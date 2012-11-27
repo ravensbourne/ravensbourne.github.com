@@ -236,6 +236,8 @@ Layout
   right: 300px;
   bottom: 10px;
   overflow: auto;
+/*  background: #fff;
+  padding: 10px;*/
 }
 
 #matrix .item {

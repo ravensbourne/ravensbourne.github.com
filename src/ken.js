@@ -97,23 +97,10 @@ _.extend(Ken.Session.prototype, _.Events, {
     } else {
       this.filteredCollection = this.collection;
     }
-    console.log('matches', this.matches);
+
+    // console.log('matches', this.matches);
     this.trigger('data:changed');
   },
-
-  // getMatchesForObject: function(o) {
-  //   var that = this;
-  //   var matches = [];
-  //   _.each(this.filters, function(values, property) {
-  //     _.each(values, function(color, value) {
-  //       if (_.include(that.valueMap[property][value], o)) {
-  //         matches.push(color);
-  //       }
-  //     });
-  //   });
-
-  //   console.log('color');
-  // },
 
   getMatchesForObject: function(o) {
     var that = this;
@@ -252,9 +239,6 @@ _.extend(Ken.Session.prototype, _.Events, {
 // Matrix Plot
 
 Ken.Matrix = Backbone.View.extend({
-  events: {
-
-  },
 
   update: function() {
     this.render();
@@ -275,6 +259,22 @@ Ken.Matrix = Backbone.View.extend({
   }
 });
 
+
+// Ken.Details
+// -----------------
+
+Ken.Details = Backbone.View.extend({
+  initialize: function() {
+
+  },
+
+  render: function() {
+    $(this.el).html(_.tpl('details', {
+      object: this.model
+    }));
+    return this;
+  }
+});
 
 // Ken.Facets
 // -----------------
@@ -313,7 +313,6 @@ Ken.Facets = Backbone.View.extend({
       filters: this.model.filters,
       facets: this.model.getFacets()
     }));
-
     return this;
   }
 });
@@ -324,7 +323,17 @@ Ken.Facets = Backbone.View.extend({
 
 Ken.Browser = Backbone.View.extend({
   events: {
+    'click .item': 'showDetails'
+  },
+
+  showDetails: function(e) {
+    var id = $(e.currentTarget).attr('data-id');
     
+    var obj = this.model.collection.get(id);
+    console.log('shooow the details for.. ', id, obj);
+    this.details = new Ken.Details({model: obj, el: this.$('#details')});
+    this.details.render();
+    return false;
   },
   
   initialize: function(options) {
@@ -342,7 +351,6 @@ Ken.Browser = Backbone.View.extend({
     $(this.el).html(_.tpl('browser', {}));
 
     this.facets = new Ken.Facets({model: this.model, el: this.$('#facets')});
-
     this.matrix = new Ken.Matrix({model: this.model, el: this.$('#matrix')});
       
     // Initially render the facets

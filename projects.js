@@ -17,8 +17,15 @@ var projects_fixture = {
         "type": "string",
         "unique": true,
         "meta": {
-          "facet": true
+          "facet": true,
+          "details": true
         }
+      },
+
+      "website": {
+        "name": "Website",
+        "type": "string",
+        "unique": true
       },
 
       "location": {
@@ -26,7 +33,8 @@ var projects_fixture = {
         "type": "string",
         "unique": true,
         "meta": {
-          "facet": true
+          "facet": true,
+          "details": true
         }
       },
 
@@ -47,7 +55,8 @@ var projects_fixture = {
         "type": "string",
         "unique": false,
         "meta": {
-          "facet": true
+          "facet": true,
+          "details": true
         }
       }
     }

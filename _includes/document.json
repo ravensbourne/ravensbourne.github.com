@@ -1,6 +1,7 @@
 {
   "_id": "{{item.url|replace:'"','\"'}}",
   "name": "{{item.name|replace:'"','\"'}}",
+  "website": "{{item.website|replace:'"','\"'}}",
   "author": "{{item.author|replace:'"','\"'}}",
   "location": "{{item.location|replace:'"','\"'}}",
   "abstract": "{{item.abstract|replace:'"','\"'}}",

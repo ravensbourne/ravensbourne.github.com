@@ -14,9 +14,30 @@ permalink: /
       <div id="details"></div>
     </script>
 
+    <!-- Details  -->
+    <script type="text/x-ejs-template" name="details">
+      <h1><%= object.get('name') %></h1>
+      <div class="abstract"><%= object.get('abstract') %></div>
+      
+      <h3>Properties</h3>
+      <% console.log(object.type()); %>
+      <% _.each(object.type().properties, function(p, key) { %>
+        <% if (p.meta && p.meta.details) { %>
+          <div class="property">
+            <div class="property-name"><b><%= p.name %></b></div>
+            <div class="values">
+              <%= object.get(key) %>
+            </div>
+          </div>          
+        <% } %>
+      <% }); %>
+
+      <a href="<%= object.get('website') %>" class="website">View Project</a>
+    </script>
+
     <!-- Item  -->
     <script type="text/x-ejs-template" name="item">
-      <div class="item">
+      <div class="item" data-id="<%= item._id %>">
         <img src="<%= item.properties.image %>"/>
         <% if (matches.length > 0) { %>
           <div class="markers">
