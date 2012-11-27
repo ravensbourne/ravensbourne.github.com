@@ -169,6 +169,37 @@ Layout
   display: block;
   margin-bottom: 1px;
   padding-left: 30px;
+  position: relative;
+}
+
+#facets .filter a.value.related {
+  font-weight: bold;
+}
+
+#facets .filter a.value .indicators {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 60px;
+}
+
+#facets .filter a.value .indicators .related-objects {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  height: 4px;
+  width: 50px;
+  background: #000;
+}
+
+#facets .filter a.value .indicators .matching-objects {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  height: 2px;
+  width: 50px;
+  background: #555;
 }
 
 #facets .filter .available-values a.value:hover {

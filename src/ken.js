@@ -130,6 +130,14 @@ _.extend(Ken.Session.prototype, _.Events, {
     _.each(this.collection.type.properties, function(p, key) {
       if (!p.meta || !p.meta.facet) return;
 
+      function getRelatedObjects(property, value) {
+        var objects = [];
+        _.each(that.valueMap[property][value], function(o) {
+          if (that.filteredCollection.get(o._id)) objects.push(o);
+        });
+        return objects;
+      }
+
       function getAvailableValues() {
         // Extract available values
         var values = [];
@@ -137,7 +145,8 @@ _.extend(Ken.Session.prototype, _.Events, {
           if (that.filters[key] && that.filters[key][value]) return;
           values.push({
             val: value,
-            objects: objects
+            objects: objects,
+            relatedObjects: getRelatedObjects(key, value)
           });
         });
         return values;
@@ -149,18 +158,30 @@ _.extend(Ken.Session.prototype, _.Events, {
           values.push({
             val: val,
             objects: that.valueMap[key][val],
+            relatedObjects: getRelatedObjects(key, val),
             color: filter.color
           });
         });
         return values;
       }
 
+      // Find max object count
+      var availableValues = getAvailableValues();
+      var selectedValues  = getSelectedValues();
+      var maxCount = Math.max.apply(this, _.map(availableValues.concat(selectedValues), function(v) {
+        return v.objects.length
+      }));
+
       facets[key] = {
         property: p,
         name: p.name,
-        availableValues: getAvailableValues(),
-        selectedValues: getSelectedValues(),
-        values: []
+        availableValues: availableValues,
+        selectedValues: selectedValues,
+        values: [],
+        maxObjectCount: maxCount,
+        scale: function(count) {
+          return count*60/maxCount; // pixel space = 60px
+        }
       };
     });
     return facets;
