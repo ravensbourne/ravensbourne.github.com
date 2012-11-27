@@ -172,6 +172,32 @@ _.extend(Ken.Session.prototype, _.Events, {
         return v.objects.length
       }));
 
+      // Sort functions
+      var VALUES_BY_RELEVANCE = function(item1, item2) {
+        var i1 = item1.relatedObjects.length;
+        var i2 = item2.relatedObjects.length;
+
+        return i1 === i2 ? 0 : (i1 > i2 ? -1 : 1);
+      };
+      
+      var VALUES_BY_FREQUENCY = function(item1, item2) {
+        var i1 = item1.objects.length;
+        var i2 = item2.objects.length;
+
+        return i1 === i2 ? 0 : (i1 > i2 ? -1 : 1);
+      };
+
+      var VALUES_BY_RELEVANCE_AND_FREQUENCY = function(item1, item2) {
+        var byRelevance = VALUES_BY_RELEVANCE(item1, item2);
+        if (byRelevance !== 0) return byRelevance;
+        return VALUES_BY_FREQUENCY(item1, item2);
+      };
+
+
+      availableValues = availableValues.sort(VALUES_BY_RELEVANCE_AND_FREQUENCY);
+      selectedValues = selectedValues.sort(VALUES_BY_RELEVANCE_AND_FREQUENCY);
+
+
       facets[key] = {
         property: p,
         name: p.name,
