@@ -74,7 +74,6 @@ _.extend(Ken.Session.prototype, _.Events, {
       obj.push(filter);
     }
 
-
     var filters = flattenFilters();
 
     // Join 'em together
@@ -90,8 +89,9 @@ _.extend(Ken.Session.prototype, _.Events, {
       _.each(filters, function(f) {
         var objects = this.valueMap[f.property][f.value];
         _.each(objects, function(o) {
-          registerMatch(o, [f.property, f.value])
-          this.filteredCollection.add(o);
+          registerMatch(o, [f.property, f.value]);
+
+          if (!this.filteredCollection.get(o._id)) this.filteredCollection.add(o);
         }, this);
       }, this);
     } else {
@@ -114,6 +114,13 @@ _.extend(Ken.Session.prototype, _.Events, {
 
   //   console.log('color');
   // },
+
+  getMatchesForObject: function(o) {
+    var that = this;
+    return _.map(this.matches[o._id], function(filter) {
+      return that.filters[filter[0]][filter[1]];
+    });
+  },
 
   // Based on current filter criteria, get facets
   getFacets: function() {
@@ -213,7 +220,8 @@ Ken.Matrix = Backbone.View.extend({
     this.$el.empty();
     _.each(this.model.filteredCollection.objects, function(item) {
       var html = _.tpl('item', {
-        item: item
+        item: item,
+        matches: this.model.getMatchesForObject(item)
       });
 
       this.$el.append(html);

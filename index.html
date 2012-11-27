@@ -18,11 +18,15 @@ permalink: /
     <script type="text/x-ejs-template" name="item">
       <div class="item">
         <img src="<%= item.properties.image %>"/>
-        <div class="markers">
-          <div class="marker"></div>
-          <div class="marker"></div>
-        </div>
-        <%= item.properties.name %>
+        <% if (matches.length > 0) { %>
+          <div class="markers">
+            <% _.each(matches, function(match) { %>
+              <div class="marker" style="background: <%= match.color %>"></div>
+            <% }); %>
+          </div>
+        <% } %>
+
+        <div class="title"><%= item.properties.name %></div>
       </div>
     </script>
 
@@ -72,7 +76,7 @@ permalink: /
         window.app = new Application();
         app.render();
 
-        console.log('PROJECTS', projects_fixture);
+        // console.log('PROJECTS', projects_fixture);
 
         // Start responding to routes
         window.router = new Router({});
