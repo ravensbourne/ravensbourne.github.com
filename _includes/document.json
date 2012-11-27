@@ -1,7 +1,8 @@
-
 {
   "title": "{{item.title|replace:'"','\"'}}",
+  "author": "{{item.author|replace:'"','\"'}}",
+  "location": "{{item.location|replace:'"','\"'}}",
   "abstract": "{{item.abstract|replace:'"','\"'}}",
-  "category":"{{item.category}}",
-  "contributors": [{% for c in item.contributors %}"{{c.user}}",{% endfor %}"foo"]
+  "image":"{{item.image}}",
+  "subjects": [{% for c in item.subjects %}"{{c}}",{% endfor %}]
 }

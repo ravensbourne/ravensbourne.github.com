@@ -1,0 +1,218 @@
+/*
+  Typography / Basics
+---------------------------------------------*/
+* {
+	margin: 0;
+}
+
+html,body {
+  background: #EDEEE6;
+  -webkit-font-smoothing: antialiased;
+	height: 100%;
+}
+
+#container {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -80px; /* Negative footer height */
+}
+
+body, textarea, p, input { 
+  font: 400 16px/1.5 'Open Sans', sans-serif; 
+  color: #505050;
+}
+
+a {
+  color: #0297d6;
+  text-decoration: none;
+  -moz-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -o-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  -webkit-transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+  transition: background-color 100ms linear, color 100ms linear, opacity 100ms linear;
+}
+
+a:hover {
+  color: #0276a7;
+}
+
+a:active { color: #505050; }
+
+a:focus, a:active {
+  outline: none;
+}
+
+img { border: 1px solid #d4d4d4; }
+
+strong { font-weight: 700;}
+
+h1, h2 { 
+  font: 700 .875em/1.5 'Open Sans Condensed', sans-serif; 
+}
+
+h1 { 
+  text-transform: uppercase;
+  padding: 10px;
+}
+
+h1 a { color: white; }
+h1 a:hover { color: white; }
+
+h2 { 
+  font-size: 1.75em; 
+  padding-bottom: 20px;
+}
+  
+h3, h4, h5, h6 {
+  margin-bottom: 20px;
+  font-size: 1em;
+  font-weight: 700;
+}
+  
+p {
+  padding-bottom: 20px;
+}
+
+p:last-child { padding-bottom: 0; }
+
+.small {
+  color: #505050;
+  font-size: .75em;
+  font-weight: 400;
+}
+
+/* Use border-box box model */
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+  
+/*
+Layout 
+--------------------------------------- */
+
+.surface { 
+  padding-bottom: 40px;
+  padding-top: 20px;
+  overflow: hidden;
+  padding-left: 30px;
+  background: #ccc;
+  }
+
+/* Browser 
+   --------------------------------------- */
+
+#browser {
+  overflow: auto;
+  border-top: 1px solid #d4d4d4;
+}
+
+
+
+/* Facets 
+   --------------------------------------- */
+
+#facets {
+  overflow: auto;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 230px;
+  background: #666;
+}
+
+#facets .filter .name {
+  height: 40px;
+  color: #fff;
+  line-height: 40px;
+  padding-left: 20px;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+#facets .filter .filter-name {
+  background: #444;
+  color: #fff;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
+
+#facets .filter .selected-values {
+   
+}
+
+#facets .filter .available-values {
+  
+}
+
+#facets .filter .selected-values a.value {
+  background: #ccc;
+  font-weight: bold;
+  color: #444;
+}
+
+#facets .filter .available-values a.value {
+  background: #E2E3DB;
+  color: #444;
+}
+
+#facets .filter a.value {
+  font-size: 13px;
+  line-height: 25px;
+  height: 25px;
+  display: block;
+  margin-bottom: 1px;
+  padding-left: 30px;
+}
+
+#facets .filter .available-values a.value:hover {
+  background: #eee;
+}
+
+/* Matrix 
+   --------------------------------------- */
+
+#matrix {
+  position: absolute;
+  top: 10px;
+  left: 250px;
+  right: 300px;
+  bottom: 10px;
+  overflow: auto;
+}
+
+#matrix .item {
+  width: 200px;
+  height: 200px;
+  float: left;
+  background: #eee;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#matrix .item:hover {
+  background: #AAA;
+}
+
+
+/* Details 
+   --------------------------------------- */
+
+#details {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  background: #bbb;
+  width: 280px;
+
+}

@@ -1,3 +1,6 @@
+---
+permalink: /
+---
 <!DOCTYPE html>
 <html>
   <head>
@@ -45,7 +48,9 @@
     <script type="text/javascript" src="lib/backbone.js"></script>
 
     <!-- Data -->
-    <script type="text/javascript" src="data/seed.js"></script>
+    <!--<script type="text/javascript" src="data/seed.js"></script>-->
+
+    <script type="text/javascript" src="projects.js"></script>
 
     <script type="text/javascript" src="src/util.js"></script>
     <script type="text/javascript" src="src/model.js"></script>
@@ -59,6 +64,8 @@
       $(function() {
         window.app = new Application();
         app.render();
+
+        console.log('PROJECTS', projects_fixture);
 
         // Start responding to routes
         window.router = new Router({});
