@@ -3,7 +3,8 @@ layout: project
 name: Substance
 abstract: A data-driven document authoring engine
 author: Michael Aufreiter
-image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
+image: "http://substance-assets.s3.amazonaws.com/7a/6857757c35da07a6c6b0f92ce1c270/politics.png"
+location: Linz
 subjects:
 - Visualization
 - Webdevelopment

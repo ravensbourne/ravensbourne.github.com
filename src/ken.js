@@ -24,6 +24,7 @@ Ken.Session = function(collection) {
 
   this.filterValueCount = 0;
   this.filters = {};
+  this.matches = {};
 
   this.colors = new ColorPool(Ken.COLOR_PALETTES);
 
@@ -34,7 +35,9 @@ _.extend(Ken.Session.prototype, _.Events, {
 
   addFilter: function(property, value) {
     if (!this.filters[property]) this.filters[property] = {};
-    this.filters[property][value] = true;
+    this.filters[property][value] = {
+      color: this.colors.getNext()
+    };
     this.filterValueCount += 1;
     this.filter();
   },
@@ -49,6 +52,9 @@ _.extend(Ken.Session.prototype, _.Events, {
   filter: function() {
     var that = this;
 
+    // Reset matches
+    this.matches = {};
+
     function flattenFilters() {
       var filters = [];
       _.each(that.filters, function(f, key) {
@@ -61,6 +67,13 @@ _.extend(Ken.Session.prototype, _.Events, {
       });
       return filters;
     }
+
+    function registerMatch(o, filter) {
+      var obj = that.matches[o._id];
+      if (!obj) obj = that.matches[o._id] = [];
+      obj.push(filter);
+    }
+
 
     var filters = flattenFilters();
 
@@ -77,15 +90,30 @@ _.extend(Ken.Session.prototype, _.Events, {
       _.each(filters, function(f) {
         var objects = this.valueMap[f.property][f.value];
         _.each(objects, function(o) {
+          registerMatch(o, [f.property, f.value])
           this.filteredCollection.add(o);
         }, this);
       }, this);
     } else {
       this.filteredCollection = this.collection;
     }
-
+    console.log('matches', this.matches);
     this.trigger('data:changed');
   },
+
+  // getMatchesForObject: function(o) {
+  //   var that = this;
+  //   var matches = [];
+  //   _.each(this.filters, function(values, property) {
+  //     _.each(values, function(color, value) {
+  //       if (_.include(that.valueMap[property][value], o)) {
+  //         matches.push(color);
+  //       }
+  //     });
+  //   });
+
+  //   console.log('color');
+  // },
 
   // Based on current filter criteria, get facets
   getFacets: function() {
@@ -113,8 +141,9 @@ _.extend(Ken.Session.prototype, _.Events, {
         _.each(that.filters[key], function(filter, val) {
           values.push({
             val: val,
-            objects: that.valueMap[key][val]
-          })
+            objects: that.valueMap[key][val],
+            color: filter.color
+          });
         });
         return values;
       }

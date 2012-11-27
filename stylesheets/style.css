@@ -197,6 +197,35 @@ Layout
   padding: 20px;
   text-align: center;
   cursor: pointer;
+  position: relative;
+}
+
+#matrix .item img {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  width: 200px;
+  border: none;
+}
+
+#matrix .item .markers {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 20px;
+  background: rgba(0,0,0, 0.8);
+  padding: 5px;
+}
+
+#matrix .item .markers .marker {
+  float: left;
+  margin-right: 1px;
+  width: 10px;
+  height: 10px;
+  background: #8AA70E;
 }
 
 #matrix .item:hover {
@@ -214,5 +243,4 @@ Layout
   bottom: 10px;
   background: #bbb;
   width: 280px;
-
 }

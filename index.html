@@ -16,7 +16,14 @@ permalink: /
 
     <!-- Item  -->
     <script type="text/x-ejs-template" name="item">
-      <div class="item"><%= item.properties.name %></div>
+      <div class="item">
+        <img src="<%= item.properties.image %>"/>
+        <div class="markers">
+          <div class="marker"></div>
+          <div class="marker"></div>
+        </div>
+        <%= item.properties.name %>
+      </div>
     </script>
 
     <!-- Facets -->
@@ -29,7 +36,7 @@ permalink: /
 
           <div class="selected-values">
             <% _.each(f.selectedValues, function(val) { %>
-              <a href="#" class="value remove" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val %> </a>
+              <a href="#" class="value remove" style="background: <%= val.color %>" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val %> (<%= val.objects.length %>)</a>
             <% }); %>
           </div>
 
