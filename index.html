@@ -37,16 +37,15 @@ permalink: /
       <% _.each(facets, function(f, key) { %>
         <div class="filter">
           <div class="filter-name"><%= f.name %></div>
-
           <div class="selected-values">
             <% _.each(f.selectedValues, function(val) { %>
-              <a href="#" class="value remove" style="background: <%= val.color %>" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val %> (<%= val.objects.length %>,<%= f.maxObjectCount %>,<%= val.relatedObjects.length %>)
+              <a href="#" class="value remove" style="background: <%= val.color %>" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val %>
                 <div class="indicators">
+                  <div class="frequency"><%= val.objects.length %></div>
                   <div class="related-objects" style="width: <%= f.scale(val.relatedObjects.length) %>px"></div>
                   <div class="matching-objects" style="width: <%= f.scale(val.objects.length) %>px"></div>
                 </div>
               </a>
-
             <% }); %>
           </div>
 
@@ -54,8 +53,8 @@ permalink: /
             <% _.each(f.availableValues, function(val) { %>
               <a href="#" class="value add<%= val.relatedObjects.length > 0 ? " related" : "" %>" data-property="<%= key %>" data-value="<%= val.val %>">
                 <%= val.val %>
-                <!-- (<%= val.relatedObjects.length %> / <%= val.objects.length %> / <%= f.scale(val.objects.length) %>) -->
                 <div class="indicators">
+                  <div class="frequency"><%= val.objects.length %></div>
                   <div class="related-objects" style="width: <%= f.scale(val.relatedObjects.length) %>px"></div>
                   <div class="matching-objects" style="width: <%= f.scale(val.objects.length) %>px"></div>
                 </div>

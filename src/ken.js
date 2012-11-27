@@ -193,10 +193,8 @@ _.extend(Ken.Session.prototype, _.Events, {
         return VALUES_BY_FREQUENCY(item1, item2);
       };
 
-
       availableValues = availableValues.sort(VALUES_BY_RELEVANCE_AND_FREQUENCY);
       selectedValues = selectedValues.sort(VALUES_BY_RELEVANCE_AND_FREQUENCY);
-
 
       facets[key] = {
         property: p,
@@ -326,7 +324,7 @@ Ken.Facets = Backbone.View.extend({
 
 Ken.Browser = Backbone.View.extend({
   events: {
-
+    
   },
   
   initialize: function(options) {

@@ -95,11 +95,12 @@ Layout
 --------------------------------------- */
 
 .surface { 
-  padding-bottom: 40px;
+/*  padding-bottom: 40px;
   padding-top: 20px;
+  padding-left: 30px;*/
   overflow: hidden;
-  padding-left: 30px;
-  background: #ccc;
+  
+  /*background: #ccc;*/
   }
 
 /* Browser 
@@ -121,9 +122,11 @@ Layout
   left: 10px;
   top: 10px;
   width: 230px;
-  background: #666;
+  /*background: #666;*/
 }
-
+#facets .filter {
+  margin-bottom: 20px;
+}
 #facets .filter .name {
   height: 40px;
   color: #fff;
@@ -134,12 +137,14 @@ Layout
 }
 
 #facets .filter .filter-name {
-  background: #444;
+  background: rgba(0,0,0, 0.6);
   color: #fff;
   font-size: 12px;
   height: 20px;
   line-height: 20px;
   padding-left: 10px;
+  font-weight: bold;
+  font-size: 10px;
   text-transform: uppercase;
 }
 
@@ -152,7 +157,7 @@ Layout
 }
 
 #facets .filter .selected-values a.value {
-  background: #ccc;
+  background: rgba(0,0,0, 0.05);
   font-weight: bold;
   color: #444;
 }
@@ -162,13 +167,17 @@ Layout
   color: #444;
 }
 
+#facets .filter .available-values a.value:hover {
+  background: rgba(0,0,0, 0.1);
+}
+
 #facets .filter a.value {
-  font-size: 13px;
+  font-size: 11px;
   line-height: 25px;
   height: 25px;
   display: block;
   margin-bottom: 1px;
-  padding-left: 30px;
+  padding-left: 20px;
   position: relative;
 }
 
@@ -187,23 +196,34 @@ Layout
 #facets .filter a.value .indicators .related-objects {
   position: absolute;
   top: 10px;
-  right: 0px;
+  right: 20px;
   height: 4px;
   width: 50px;
-  background: #000;
+  background: rgba(0,0,0, 0.5);
 }
 
 #facets .filter a.value .indicators .matching-objects {
   position: absolute;
   top: 15px;
-  right: 0px;
+  right: 20px;
   height: 2px;
   width: 50px;
-  background: #555;
+  background: rgba(0,0,0, 0.3);
 }
 
-#facets .filter .available-values a.value:hover {
-  background: #eee;
+#facets .filter a.value .indicators .frequency {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 20px;
+  /*background: #555;*/
+  line-height: 25px;
+  padding: 0 5px;
+  text-align: right;
+  color: #555;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 /* Matrix 
