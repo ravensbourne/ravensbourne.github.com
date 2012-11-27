@@ -1,5 +1,5 @@
 {
-  "name": "{{item.title|replace:'"','\"'}}",
+  "name": "{{item.name|replace:'"','\"'}}",
   "author": "{{item.author|replace:'"','\"'}}",
   "location": "{{item.location|replace:'"','\"'}}",
   "abstract": "{{item.abstract|replace:'"','\"'}}",

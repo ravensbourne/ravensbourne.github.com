@@ -21,8 +21,8 @@ permalink: /projects/
 
 <div class="project-listing">
   {% for item in site.categories.projects reversed limit:40 offset:0 %}
-    <a class="project" href="{{site.baseurl}}{{item.url}}" title="{{item.title}}">
-      <div class="title">{{item.title}}</div>
+    <a class="project" href="{{site.baseurl}}{{item.url}}" title="{{item.name}}">
+      <div class="title">{{item.name}}</div>
       <div class="author">by {{item.author}}</div>
       <div class="abstract">{{item.abstract}}</div>
     </a>
