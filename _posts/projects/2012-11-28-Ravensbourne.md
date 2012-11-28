@@ -1,6 +1,6 @@
 ---
 layout: project
-name: Ravensbourne
+name: Ravensbourne Test
 abstract: Enter project summary
 author: John Doe
 image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
@@ -21,7 +21,7 @@ assets:
     url: http://example.com/image2
 categories:
 - projects
-published: true
+published: false
 ---
 
 # How does it work?
