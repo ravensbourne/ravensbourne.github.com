@@ -4,6 +4,11 @@ _.tpl = function(tpl, ctx) {
   return _.template(source, ctx);
 };
 
+
+_.htmlId = function(id) {
+  return id.replace(/\./g, '_').replace(/\//g, '_').replace(/_/, '');
+}
+
 // Color Pool
 // --------------
 

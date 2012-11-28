@@ -10,7 +10,7 @@ permalink: /
     <!-- Browser  -->
     <script type="text/x-ejs-template" name="browser">
       <div id="facets"></div>
-      <div id="matrix" class="surface">Loading...</div>
+      <div id="matrix" class="surface"></div>
       <div id="details"></div>
     </script>
 
@@ -37,7 +37,7 @@ permalink: /
 
     <!-- Item  -->
     <script type="text/x-ejs-template" name="item">
-      <div class="item" data-id="<%= item._id %>">
+      <div class="item" id="<%= _.htmlId(item._id) %>" data-id="<%= item._id %>">
         <img src="<%= item.properties.image %>"/>
         <% if (matches.length > 0) { %>
           <div class="markers">
@@ -47,7 +47,7 @@ permalink: /
           </div>
         <% } %>
 
-        <div class="title"><%= item.properties.name %></div>
+        <div class="name"><%= item.properties.name %></div>
       </div>
     </script>
 

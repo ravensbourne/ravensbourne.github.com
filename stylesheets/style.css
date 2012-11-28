@@ -95,13 +95,8 @@ Layout
 --------------------------------------- */
 
 .surface { 
-/*  padding-bottom: 40px;
-  padding-top: 20px;
-  padding-left: 30px;*/
   overflow: hidden;
-  
-  /*background: #ccc;*/
-  }
+}
 
 /* Browser 
    --------------------------------------- */
@@ -122,11 +117,12 @@ Layout
   left: 10px;
   top: 10px;
   width: 230px;
-  /*background: #666;*/
 }
+
 #facets .filter {
   margin-bottom: 20px;
 }
+
 #facets .filter .name {
   height: 40px;
   color: #fff;
@@ -149,7 +145,7 @@ Layout
 }
 
 #facets .filter .selected-values {
-   
+
 }
 
 #facets .filter .available-values {
@@ -236,30 +232,36 @@ Layout
   right: 300px;
   bottom: 10px;
   overflow: auto;
-/*  background: #fff;
-  padding: 10px;*/
 }
 
 #matrix .item {
+  position: absolute;
   width: 200px;
   height: 200px;
   float: left;
-  background: #eee;
-  margin-right: 1px;
-  margin-bottom: 1px;
-  padding: 20px;
+  /*background: #ccc;*/
+  /* margin-right: 1px;
+  margin-bottom: 1px;*/
+  /*padding: 20px; */
   text-align: center;
   cursor: pointer;
-  position: relative;
+
+  -webkit-transition-property: left, top, width, height, opacity;
+  -moz-transition-property: left, top, width, height, opacity;
+  transition-property: left, top, width, height, opacity;
+
+  -webkit-transition-duration: 0.75s;
+  -moz-transition-duration: 0.75s;
+  transition-duration: 0.75s;
+  opacity: 0.8;
+}
+
+#matrix .item .name {
+  display: none;
 }
 
 #matrix .item img {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  width: 200px;
+  width: 100%;
   border: none;
 }
 
@@ -284,7 +286,6 @@ Layout
 #matrix .item:hover {
   background: #AAA;
 }
-
 
 /* Details 
    --------------------------------------- */

@@ -48,6 +48,23 @@ _.extend(Ken.Session.prototype, _.Events, {
     this.filter();
   },
 
+  // Getting deltas based on prev state and new state
+  getDelta: function() {
+    if (this.prevFilteredCollection) {
+      return {
+        "enter": this.filteredCollection.difference(this.prevFilteredCollection).objects,
+        "update": this.filteredCollection.intersection(this.prevFilteredCollection).objects,
+        "exit": this.prevFilteredCollection.difference(this.filteredCollection).objects
+      }
+    } else {
+      return {
+        "enter": this.filteredCollection.objects,
+        "update": [],
+        "exit": []
+      }
+    }
+  },
+
   // Compute collection based on filters
   filter: function() {
     var that = this;
@@ -76,6 +93,8 @@ _.extend(Ken.Session.prototype, _.Events, {
 
     var filters = flattenFilters();
 
+    this.prevFilteredCollection = this.filteredCollection;
+
     // Join 'em together
     if (filters.length > 0) {
       this.filteredCollection = new Data.Collection({
@@ -98,7 +117,6 @@ _.extend(Ken.Session.prototype, _.Events, {
       this.filteredCollection = this.collection;
     }
 
-    // console.log('matches', this.matches);
     this.trigger('data:changed');
   },
 
@@ -241,20 +259,141 @@ _.extend(Ken.Session.prototype, _.Events, {
 Ken.Matrix = Backbone.View.extend({
 
   update: function() {
-    this.render();
+    this.layout();
+    this.handleDelta();
   },
 
-  render: function() {
-    // Empty container
-    this.$el.empty();
-    _.each(this.model.filteredCollection.objects, function(item) {
-      var html = _.tpl('item', {
-        item: item,
-        matches: this.model.getMatchesForObject(item)
+  layout: function() {
+    console.log('computing layout');
+    function computeCols(n, width, height) {
+      var cols = 1, // number of cols
+          a, // edge length
+          rows; // number of rows
+
+      while(true) {
+        a = width / cols;
+        rows = Math.ceil(n/cols);
+        if (rows*a <= height && n*a*a <= width*height)
+          return cols;
+        else {
+          cols += 1;
+        }
+      }
+    }
+
+    var cols = computeCols(this.model.filteredCollection.objects.length, 700, 400);
+    size = Math.floor(700 / cols);
+
+    _.each(this.model.filteredCollection.objects, function(item, i) {
+      item.pos = {
+        x: parseInt((i % cols)*size, 10),
+        y: Math.floor(i / cols)*size,
+
+        dx: size-1,
+        dy: size-1
+      };
+    });
+
+  },
+
+  handleDelta: function() {
+    var delta = this.model.getDelta();
+    var that = this;
+
+    function enter(items) {
+      _.each(items, function(item) {
+        var element = that.newItem(item);
+
+        element.css({
+          'left': item.pos.x+'px',
+          'top': item.pos.y+'px',
+          'width': item.pos.dx+'px',
+          'height': item.pos.dy+'px'
+        });
+        that.$el.append(element);
+      });
+    }
+
+    function update(items) {
+      // var that = this;
+      _.each(items, function(item) {
+        var cell = '#' + _.htmlId(item._id);
+
+        function updateMatches() {
+          // Update matches
+          var matches = that.model.getMatchesForObject(item);
+
+          // Remove em
+          $(cell).find('.markers').remove();
+            
+          if (matches.length > 0) {
+            var $matchers = $('<div class="markers"></div>') 
+            _.each(matches, function(match) {
+              // console.log(matchersEl);
+              $matchers.append('<div class="marker" style="background: '+match.color+'"></div>');
+            });
+            $(cell).append($matchers);
+          }      
+        }
+
+        updateMatches();
+
+        $(cell).css({
+          'left': item.pos.x+'px',
+          'top': item.pos.y+'px',
+          'width': item.pos.dx+'px',
+          'height': item.pos.dy+'px'
+        });
+
+      });
+    }
+
+    function exit(items) {
+
+      function remove() {
+        _.each(items, function(item) {
+          $('#'+_.htmlId(item._id)).remove();
+        });
+      }
+
+      _.each(items, function(item) {
+        var randPos = {
+          x: parseInt(Math.random()*300, 10),
+          y: parseInt(Math.random()*200, 10)
+        };
+
+        $('#'+_.htmlId(item._id)).css({
+          'left': randPos.x+'px',
+          'top': randPos.y+'px',
+          'width': '1px',
+          'height': '1px'
+        });
+
+        // console.log('removing markers..', $('#'+_.htmlId(item._id)+' .markers'));
+        $('#'+_.htmlId(item._id)+' .markers').remove();
       });
 
-      this.$el.append(html);
-    }, this);
+      _.delay(remove, 1000);
+    }
+
+    enter(delta.enter);
+    update(delta.update);
+    exit(delta.exit);
+  },
+
+  newItem: function(item) {
+    var html = _.tpl('item', {
+      item: item,
+      matches: this.model.getMatchesForObject(item)
+    });
+    return $(html);
+  },
+
+  // Initial render
+  // TODO: just use update() ?
+  render: function() {
+    this.layout();
+    this.handleDelta();
     return this;
   }
 });
