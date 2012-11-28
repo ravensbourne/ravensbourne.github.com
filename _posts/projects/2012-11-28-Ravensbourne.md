@@ -8,6 +8,7 @@ subjects:
 - Animation
 - Visual effects
 - The new subject
+- Another subject
 assets:
   videos:
   - name: Video 1
