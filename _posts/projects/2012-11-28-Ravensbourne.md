@@ -7,6 +7,7 @@ image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
 subjects:
 - Animation
 - Visual effects
+- The new subject
 assets:
   videos:
   - name: Video 1
