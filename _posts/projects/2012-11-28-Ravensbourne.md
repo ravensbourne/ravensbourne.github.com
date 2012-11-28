@@ -9,6 +9,7 @@ subjects:
 - Visual effects
 - The new subject
 - Another subject
+- asdfasdf
 assets:
   videos:
   - name: Video 1
