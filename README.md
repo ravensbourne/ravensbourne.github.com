@@ -21,3 +21,12 @@ Employing the Project Browser, users will be able to answer the following questi
 - Which projects were done by Will Pearson and Lizzie Jackson?
 - Where can I find detailed information about a particular project?
 - The all or nothing question: “Which projects are relevant?” based on the given filter criteria.
+
+
+## Examples
+
+- [NYT Visualization](http://moritz.stefaner.eu/projects/elastic-lists/NYT)
+
+## Useful example data
+
+- [NYT API](http://developer.nytimes.com/docs/article_search_api#h3-facets-working)
