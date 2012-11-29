@@ -1,16 +1,15 @@
 ---
 layout: project
-name: ASKKEN
-abstract: A visual knowledge browser
-author: Michael Aufreiter
-image: "http://substance-assets.s3.amazonaws.com/83/38c97cb2c7823c6a743d9790c5b7fd/mathematics.png"
-website: http://github.com/project/ken
-location: Linz
+name: Ravensbourne Test
+abstract: Enter project summary
+author: John Doe
+image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
 subjects:
-- Visualization
-- Webdevelopment
+- Animation
 - Visual effects
-- silly thing
+- The new subject
+- Another subject
+- asdfasdf
 assets:
   videos:
   - name: Video 1
@@ -25,7 +24,7 @@ assets:
     url: http://example.com/image2
 categories:
 - projects
-published: true
+published: false
 ---
 
 # How does it work?
