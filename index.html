@@ -20,7 +20,6 @@ permalink: /
       <div class="abstract"><%= object.get('abstract') %></div>
       
       <h3>Properties</h3>
-      <% console.log(object.type()); %>
       <% _.each(object.type().properties, function(p, key) { %>
         <% if (p.meta && p.meta.details) { %>
           <div class="property">

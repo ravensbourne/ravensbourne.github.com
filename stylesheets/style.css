@@ -46,7 +46,7 @@ img { border: 1px solid #d4d4d4; }
 
 strong { font-weight: 700;}
 
-h1, h2 { 
+h1, h2, h3 { 
   font: 700 .875em/1.5 'Open Sans Condensed', sans-serif; 
 }
 
@@ -239,7 +239,7 @@ Layout
   width: 200px;
   height: 200px;
   float: left;
-  /*background: #ccc;*/
+  background: #ccc;
   /* margin-right: 1px;
   margin-bottom: 1px;*/
   /*padding: 20px; */
@@ -256,13 +256,27 @@ Layout
   opacity: 0.8;
 }
 
+#matrix .item:hover {
+  opacity: 1.0;
+}
+
 #matrix .item .name {
-  display: none;
+  /*display: none;*/
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  font-size: 12px;
+  font-weight: bold;
+  background: rgba(0,0,0, 0.8);
+  padding: 0 5px;
+  color: #fff;
 }
 
 #matrix .item img {
   width: 100%;
   border: none;
+  /*display: none;*/
+  /*opacity: 0;*/
 }
 
 #matrix .item .markers {
@@ -291,10 +305,20 @@ Layout
    --------------------------------------- */
 
 #details {
+  z-index: 200;
+  padding: 10px;
   position: absolute;
   right: 10px;
   top: 10px;
   bottom: 10px;
-  background: #bbb;
+  background: rgba(0,0,0, 0.05);
   width: 280px;
+}
+
+#details h1 {
+  padding: 5px 0px;
+}
+
+#details h3 {
+  text-transform: uppercase;
 }

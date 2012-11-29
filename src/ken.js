@@ -281,8 +281,12 @@ Ken.Matrix = Backbone.View.extend({
       }
     }
 
-    var cols = computeCols(this.model.filteredCollection.objects.length, 700, 400);
-    size = Math.floor(700 / cols);
+    console.log('get matrix dimensions');
+    var width = $('#matrix').width();
+    var height = $('#matrix').height();
+
+    var cols = computeCols(this.model.filteredCollection.objects.length, width, height);
+    var size = Math.floor(width / cols);
 
     _.each(this.model.filteredCollection.objects, function(item, i) {
       item.pos = {
@@ -369,6 +373,7 @@ Ken.Matrix = Backbone.View.extend({
           'height': '1px'
         });
 
+        $('#'+_.htmlId(item._id)).find('.name').remove();
         // console.log('removing markers..', $('#'+_.htmlId(item._id)+' .markers'));
         $('#'+_.htmlId(item._id)+' .markers').remove();
       });
@@ -469,7 +474,6 @@ Ken.Browser = Backbone.View.extend({
     var id = $(e.currentTarget).attr('data-id');
     
     var obj = this.model.collection.get(id);
-    console.log('shooow the details for.. ', id, obj);
     this.details = new Ken.Details({model: obj, el: this.$('#details')});
     this.details.render();
     return false;
@@ -486,6 +490,7 @@ Ken.Browser = Backbone.View.extend({
   },
   
   render: function() {
+    var that = this;
     // Should be rendered just once
     $(this.el).html(_.tpl('browser', {}));
 
@@ -495,9 +500,10 @@ Ken.Browser = Backbone.View.extend({
     // Initially render the facets
     this.facets.render();
 
-    // Initially render the matrix
-    this.matrix.render();
-
+    // Initially render the matrix / delayed -> hackish
+    _.delay(function() {
+      that.matrix.render();
+    }, 10);
     return this;
   }
 });
