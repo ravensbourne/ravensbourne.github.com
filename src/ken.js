@@ -463,7 +463,26 @@ Ken.Facets = Backbone.View.extend({
 
 Ken.Browser = Backbone.View.extend({
   events: {
-    'click .item': 'toggleDetails'
+    'click .item': 'toggleDetails',
+    'mouseover a.value': 'highlightValue',
+    'mouseout a.value': 'unhighlightValue'
+  },
+
+  unhighlightValue: function(e) {
+    $('#matrix .item').removeClass('eased');
+    return false;
+  },
+
+  highlightValue: function(e) {
+    var prop = $(e.currentTarget).attr('data-property');
+    var val = $(e.currentTarget).attr('data-value');
+    $('#matrix .item').addClass('eased');
+    var objects = this.model.valueMap[prop][val];
+
+    _.each(objects, function(o) {
+      $('#'+_.htmlId(o._id)).removeClass('eased');
+    });
+    return false;
   },
 
   toggleDetails: function(e) {
@@ -472,8 +491,7 @@ Ken.Browser = Backbone.View.extend({
     if (id === this.prevId) {
       $('#matrix .item').removeClass('eased');
       this.prevId = null;
-      console.log('fading out..');
-      return this.$('#details').hide(); // removeClass('active');
+      return this.$('#details').hide();
     }
 
     this.prevId = id;

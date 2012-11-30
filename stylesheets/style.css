@@ -106,7 +106,6 @@ Layout
 }
 
 
-
 /* Facets 
    --------------------------------------- */
 
@@ -175,7 +174,6 @@ Layout
   line-height: 25px;
   height: 25px;
   display: block;
-  margin-bottom: 1px;
   padding-left: 20px;
   position: relative;
 }
@@ -253,9 +251,9 @@ Layout
   -moz-transition-property: left, top, width, height, opacity;
   transition-property: left, top, width, height, opacity;
 
-  -webkit-transition-duration: 0.75s;
-  -moz-transition-duration: 0.75s;
-  transition-duration: 0.75s;
+  -webkit-transition-duration: 0.2s;
+  -moz-transition-duration: 0.2s;
+  transition-duration: 0.2s;
   opacity: 0.8;
 }
 
