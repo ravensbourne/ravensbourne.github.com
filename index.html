@@ -16,22 +16,29 @@ permalink: /
 
     <!-- Details  -->
     <script type="text/x-ejs-template" name="details">
+      <a class="image" href="<%= object.get('website') %>" target="_blank">
+        <img src="<%= object.properties.image %>"/>
+      </a>
+      <div class="details-wrapper">
       <h1><%= object.get('name') %></h1>
       <div class="abstract"><%= object.get('abstract') %></div>
       
-      <h3>Properties</h3>
       <% _.each(object.type().properties, function(p, key) { %>
         <% if (p.meta && p.meta.details) { %>
           <div class="property">
-            <div class="property-name"><b><%= p.name %></b></div>
+            <div class="property-name"><%= p.name %></div>
             <div class="values">
-              <%= object.get(key) %>
+              <% values = object.get(key); %>
+              <% values = _.isArray(values) ? values : [values] %>
+              <% _.each(values, function(val) { %>
+                <% var color = filters[key] && filters[key][val] ? filters[key][val].color : null %>
+                <span style="background: <%= color %>"><%= val %></span>
+              <% }); %>
             </div>
           </div>          
         <% } %>
       <% }); %>
-
-      <a href="<%= object.get('website') %>" class="website">View Project</a>
+      </div>
     </script>
 
     <!-- Item  -->
@@ -45,7 +52,6 @@ permalink: /
             <% }); %>
           </div>
         <% } %>
-
         <div class="name"><%= item.properties.name %></div>
       </div>
     </script>
@@ -107,8 +113,6 @@ permalink: /
       $(function() {
         window.app = new Application();
         app.render();
-
-        // console.log('PROJECTS', projects_fixture);
 
         // Start responding to routes
         window.router = new Router({});

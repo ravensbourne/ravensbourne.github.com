@@ -264,7 +264,6 @@ Ken.Matrix = Backbone.View.extend({
   },
 
   layout: function() {
-    console.log('computing layout');
     function computeCols(n, width, height) {
       var cols = 1, // number of cols
           a, // edge length
@@ -281,7 +280,6 @@ Ken.Matrix = Backbone.View.extend({
       }
     }
 
-    console.log('get matrix dimensions');
     var width = $('#matrix').width();
     var height = $('#matrix').height();
 
@@ -413,9 +411,7 @@ Ken.Details = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).html(_.tpl('details', {
-      object: this.model
-    }));
+    $(this.el).html(_.tpl('details',this.model));
     return this;
   }
 });
@@ -467,14 +463,34 @@ Ken.Facets = Backbone.View.extend({
 
 Ken.Browser = Backbone.View.extend({
   events: {
-    'click .item': 'showDetails'
+    'click .item': 'toggleDetails'
   },
 
-  showDetails: function(e) {
+  toggleDetails: function(e) {
     var id = $(e.currentTarget).attr('data-id');
+    console.log('toggling', id);
+    if (id === this.prevId) {
+      $('#matrix .item').removeClass('eased');
+      this.prevId = null;
+      console.log('fading out..');
+      return this.$('#details').hide(); // removeClass('active');
+    }
+
+    this.prevId = id;
+
+    $('#matrix .item').addClass('eased');
+    $('#matrix .item.active').removeClass('active');
+
+    $('#'+_.htmlId(id)).removeClass('eased').addClass('active');
     
     var obj = this.model.collection.get(id);
-    this.details = new Ken.Details({model: obj, el: this.$('#details')});
+    this.details = new Ken.Details({model: {
+      object: obj,
+      filters: this.model.filters
+    }, el: this.$('#details')});
+
+    this.$('#details').show(); // addClass('active');
+
     this.details.render();
     return false;
   },
