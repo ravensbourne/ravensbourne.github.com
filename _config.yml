@@ -8,27 +8,32 @@ exclude:
 prose:
   rooturl: "_posts"
   metadata:
-    "_posts/projects": |
-      layout: project
-      title: Enter project title
-      abstract: Enter project summary
-      author: John Doe
-      image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
-      subjects:
-      - Animation
-      - Visual effects
-      assets:
-        videos:
-        - name: Video 1
-          url: http://vimeo.com/video1
-        documents: 
-        - name: Document 1
-          url: http://example.com/document1.pdf
-        - name: Document 2
-          url: http://example.com/document2.pdf
-        images:
-        - name: Image 1
-          url: http://example.com/image2
-      categories:
-      - projects
-      published: true
+    "_posts/projects":
+      - name: "title"
+        field:
+          element: "text"
+          label: "Project Title"
+          value: "My Project Title"
+      - name: "abstract"
+        field:
+          element: "text"
+          label: "Project Summary"
+          value: "Enter a short description of your project"
+      - name: "image"
+        field:
+          element: "text"
+          label: "Image URL"
+          value: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
+      - name: "subjects"
+        field:
+          element: "multiselect"
+          label: "Subjects"
+          placeholder: "Select an Item"
+          options:
+            - name: "Animation"
+              value: "Animation"
+            - name: "Visual Effects"
+              value: "Visual Effets"
+            - name: "3D Modelling"
+              value: "3D Modelling"
+          selected: "Animation"
