@@ -17,6 +17,19 @@ prose:
           options:
             - name: "projects"
               value: "Project"
+      - name: "subjects"
+        field:
+          element: "multiselect"
+          label: "Subjects"
+          placeholder: "Select an Item"
+          options:
+            - name: "Animation"
+              value: "Animation"
+            - name: "Visual Effects"
+              value: "Visual Effets"
+            - name: "3D Modelling"
+              value: "3D Modelling"
+          selected: "Animation"
       - name: "name"
         field:
           element: "text"
@@ -37,16 +50,3 @@ prose:
           element: "text"
           label: "Website URL"
           value: "http://www.rave.co.uk/"
-      - name: "subjects"
-        field:
-          element: "multiselect"
-          label: "Subjects"
-          placeholder: "Select an Item"
-          options:
-            - name: "Animation"
-              value: "Animation"
-            - name: "Visual Effects"
-              value: "Visual Effets"
-            - name: "3D Modelling"
-              value: "3D Modelling"
-          selected: "Animation"
