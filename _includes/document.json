@@ -3,7 +3,6 @@
   "name": "{{item.name|replace:'"','\"'}}",
   "website": "{{item.website|replace:'"','\"'}}",
   "author": "{{item.author|replace:'"','\"'}}",
-  "location": "{{item.location|replace:'"','\"'}}",
   "abstract": "{{item.abstract|replace:'"','\"'}}",
   "image":"{{item.image}}",
   "subjects": [{% for c in item.subjects %}"{{c}}",{% endfor %}]

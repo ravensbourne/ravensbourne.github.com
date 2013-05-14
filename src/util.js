@@ -56,3 +56,23 @@ var ColorPool = function(colors) {
     reset: reset
   }
 };
+
+
+// Request abstraction
+// --------------
+
+_.request = function(method, path, data) {
+  var cb = _.last(arguments);
+  $.ajax({
+    type: method,
+    url: path,
+    // data: data !== undefined ? JSON.stringify(data) : null,
+    dataType: 'json',
+    // contentType: "application/json",
+    success: function(res) { 
+      console.log('RESULT', res);
+      cb(null, res);
+    },
+    error: function(err) { console.log(err.responseText); cb(JSON.parse(err.responseText)); }
+  });
+};

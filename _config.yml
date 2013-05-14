@@ -27,7 +27,7 @@ prose:
           element: "text"
           label: "Project Title"
           value: "My Project Title"
-      - name: "creator"
+      - name: "author"
         field:
           element: "text"
           label: "Project Creator"

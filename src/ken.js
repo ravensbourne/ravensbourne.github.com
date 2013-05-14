@@ -9,9 +9,9 @@ var Ken = {};
 // ------------
 
 Ken.COLOR_PALETTES = {
-  "greenish": ["#afc59c", "#bcc97b", "#d8c46f"],
-  "blueish": ["#a377b8", "#6c6db4", "#6c9db4"],
-  "redish": ["#e3ae78", "#df8682", "#cb829b"]
+  "greenish": ["#687E00", "#4E451A", "#4C7F1F"],
+  "blueish": ["#135574", "#242443", "#22102F"],
+  "redish": ["#7A1B15", "#5E0A45", "#632A08"]
 };
 
 // Ken.Session
@@ -97,6 +97,26 @@ _.extend(Ken.Session.prototype, _.Events, {
 
     // Join 'em together
     if (filters.length > 0) {
+
+      var filteredObjects = [];
+      _.each(filters, function(f) {
+        var objects = this.valueMap[f.property][f.value];
+        _.each(objects, function(o) {
+          registerMatch(o, [f.property, f.value]);
+          filteredObjects.push(o);
+        }, this);
+      }, this);
+
+      var OBJECTS_BY_RELEVANCE = function(item1, item2) {
+        var i1 = that.getMatchesForObject(item1);
+        var i2 = that.getMatchesForObject(item2);
+
+        return i1 === i2 ? 0 : (i1 > i2 ? -1 : 1);
+      };
+
+      filteredObjects = _.uniq(filteredObjects).sort(OBJECTS_BY_RELEVANCE);
+
+      // Construct new Data.Collection
       this.filteredCollection = new Data.Collection({
         "type": {
           "_id": this.collection.type._id,
@@ -105,14 +125,11 @@ _.extend(Ken.Session.prototype, _.Events, {
         },
         "objects": []
       });
-      _.each(filters, function(f) {
-        var objects = this.valueMap[f.property][f.value];
-        _.each(objects, function(o) {
-          registerMatch(o, [f.property, f.value]);
 
-          if (!this.filteredCollection.get(o._id)) this.filteredCollection.add(o);
-        }, this);
-      }, this);
+      _.each(filteredObjects, function(o) {
+        that.filteredCollection.add(o);
+      });
+
     } else {
       this.filteredCollection = this.collection;
     }
@@ -285,6 +302,7 @@ Ken.Matrix = Backbone.View.extend({
 
     var cols = computeCols(this.model.filteredCollection.objects.length, width, height);
     var size = Math.floor(width / cols);
+    if (size>300) size = 300;
 
     _.each(this.model.filteredCollection.objects, function(item, i) {
       item.pos = {
@@ -464,34 +482,41 @@ Ken.Facets = Backbone.View.extend({
 Ken.Browser = Backbone.View.extend({
   events: {
     'click .item': 'toggleDetails',
+    'click .item': 'toggleDetails',
+    'click .close-details': 'closeDetails',
+    'click #matrix': 'closeDetails',
     'mouseover a.value': 'highlightValue',
     'mouseout a.value': 'unhighlightValue'
   },
 
   unhighlightValue: function(e) {
-    $('#matrix .item').removeClass('eased');
+    $('#matrix .item').removeClass('highlighted');
     return false;
   },
 
   highlightValue: function(e) {
     var prop = $(e.currentTarget).attr('data-property');
     var val = $(e.currentTarget).attr('data-value');
-    $('#matrix .item').addClass('eased');
+    $('#matrix .item').removeClass('highlighted');
     var objects = this.model.valueMap[prop][val];
 
     _.each(objects, function(o) {
-      $('#'+_.htmlId(o._id)).removeClass('eased');
+      $('#'+_.htmlId(o._id)).addClass('highlighted');
     });
     return false;
   },
 
+  closeDetails: function() {
+    $('#matrix .item').removeClass('eased');
+    this.prevId = null;
+    $('#matrix .item.active').removeClass('active');
+    return this.$('#details').hide();
+  },
+
   toggleDetails: function(e) {
     var id = $(e.currentTarget).attr('data-id');
-    console.log('toggling', id);
     if (id === this.prevId) {
-      $('#matrix .item').removeClass('eased');
-      this.prevId = null;
-      return this.$('#details').hide();
+      return this.closeDetails();
     }
 
     this.prevId = id;
@@ -507,7 +532,7 @@ Ken.Browser = Backbone.View.extend({
       filters: this.model.filters
     }, el: this.$('#details')});
 
-    this.$('#details').show(); // addClass('active');
+    this.$('#details').show();
 
     this.details.render();
     return false;

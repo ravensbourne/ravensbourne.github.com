@@ -1,6 +1,3 @@
----
-permalink: /
----
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,13 +13,20 @@ permalink: /
 
     <!-- Details  -->
     <script type="text/x-ejs-template" name="details">
-      <a class="image" href="<%= object.get('website') %>" target="_blank">
+      <a class="close-details image" href="#">
         <img src="<%= object.properties.image %>"/>
+        <div class="label">Close</div>
       </a>
       <div class="details-wrapper">
-      <h1><%= object.get('name') %></h1>
-      <div class="abstract"><%= object.get('abstract') %></div>
-      
+      <% if (object.get('website')) { %>
+        <h1><a target="_blank" href="<%= object.get('website') %>"><%= object.get('name') %></a></h1>
+      <% } else { %>
+        h1><%= object.get('name') %></h1>
+      <% } %>
+      <div class="abstract">
+        <%= object.get('abstract') %>
+        [ <a href="<%= object.get('website') %>" target="_blank">Read More</a> ]
+      </div>
       <% _.each(object.type().properties, function(p, key) { %>
         <% if (p.meta && p.meta.details) { %>
           <div class="property">
@@ -65,7 +69,7 @@ permalink: /
           <div class="filter-name"><%= f.name %></div>
           <div class="selected-values">
             <% _.each(f.selectedValues, function(val) { %>
-              <a href="#" class="value remove" style="background: <%= val.color %>" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val %>
+              <a href="#" class="value remove" style="background: <%= val.color %>" data-property="<%= key %>" data-value="<%= val.val %>"><%= val.val.toLowerCase().substr(0, 36) %>
                 <div class="indicators">
                   <div class="frequency"><%= val.objects.length %></div>
                   <div class="related-objects" style="width: <%= f.scale(val.relatedObjects.length) %>px"></div>
@@ -78,7 +82,7 @@ permalink: /
           <div class="available-values">
             <% _.each(f.availableValues, function(val) { %>
               <a href="#" class="value add<%= val.relatedObjects.length > 0 ? " related" : "" %>" data-property="<%= key %>" data-value="<%= val.val %>">
-                <%= val.val %>
+                <%= val.val.toLowerCase().substr(0, 36) %>
                 <div class="indicators">
                   <div class="frequency"><%= val.objects.length %></div>
                   <div class="related-objects" style="width: <%= f.scale(val.relatedObjects.length) %>px"></div>
@@ -96,11 +100,6 @@ permalink: /
     <script type="text/javascript" src="lib/data.js"></script>
     <script type="text/javascript" src="lib/backbone.js"></script>
 
-    <!-- Data -->
-    <!--<script type="text/javascript" src="data/seed.js"></script>-->
-
-    <script type="text/javascript" src="projects.js"></script>
-
     <script type="text/javascript" src="src/util.js"></script>
     <script type="text/javascript" src="src/model.js"></script>
 
@@ -109,9 +108,12 @@ permalink: /
 
     <script type="text/javascript" src="src/app.js"></script>
 
+    <!-- Data -->
+    <script type="text/javascript" src="projects.js"></script>
+
     <script type="text/javascript">
       $(function() {
-        window.app = new Application();
+        window.app = new Application({ dataset: "data/articles_2013_02_11.json"});
         app.render();
 
         // Start responding to routes
@@ -121,13 +123,17 @@ permalink: /
     </script>
     
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+
+    <!-- <link rel="stylesheet" type="text/css" media="all" href="fonts/open-sans.css"/> -->
     <link rel="stylesheet" type="text/css" media="all" href="stylesheets/reset.css"/>
     <link rel="stylesheet" type="text/css" media="all" href="stylesheets/style.css"/>
+    <link rel="stylesheet" type="text/css" media="all" href="stylesheets/ken.css"/>
+    
   </head>
   <body>
     <div id="container">
       <div id="header">
-        
+        <div class="title"><a href="/">Ravensbourne</a> - Research Projects</div>
       </div>
       <div id="main">
         Main Content
@@ -135,4 +141,3 @@ permalink: /
     </div>
   </body>
 </html>
-

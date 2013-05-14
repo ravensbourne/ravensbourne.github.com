@@ -28,16 +28,6 @@ var projects_fixture = {
         "unique": true
       },
 
-      "location": {
-        "name": "Location",
-        "type": "string",
-        "unique": true,
-        "meta": {
-          "facet": true,
-          "details": true
-        }
-      },
-
       "image": {
         "name": "Image",
         "type": "string",
