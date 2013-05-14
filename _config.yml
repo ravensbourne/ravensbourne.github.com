@@ -21,6 +21,10 @@ prose:
               value: "Visual Effets"
             - name: "3D Modelling"
               value: "3D Modelling"
+            - name: "3D Printing"
+              value: "3D Printing"
+            - name: "Motion Graphics"
+              value: "Motion Graphics"
           selected: "Animation"
       - name: "name"
         field:
