@@ -6,7 +6,7 @@ exclude:
 - .gitignore
 - README.md
 prose:
-  rooturl: "_posts"
+  rooturl: "_posts/projects"
   metadata:
     "_posts/projects":
       - name: "subjects"
