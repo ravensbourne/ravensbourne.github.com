@@ -19,11 +19,6 @@ prose:
           element: "text"
           label: "Project Summary"
           value: "Enter a short description of your project"
-      - name: "creator"
-        field:
-          element: "text"
-          label: "Project Creator"
-          value: "John Doe"
       - name: "image"
         field:
           element: "text"
