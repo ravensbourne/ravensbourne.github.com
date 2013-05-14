@@ -29,14 +29,6 @@ prose:
           element: "text"
           label: "Image URL"
           value: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
-      - name: "categories"
-        field:
-          element: "select"
-          label: "Category"
-          placeholder: "Select category"
-          options:
-            - name: "projects"
-              value: "Project"
       - name: "website"
         field:
           element: "text"
