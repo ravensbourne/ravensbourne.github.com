@@ -24,6 +24,11 @@ prose:
           element: "text"
           label: "Image URL"
           value: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
+      - name: "website"
+        field:
+          element: "text"
+          label: "Website URL"
+          value: "http://www.rave.co.uk/"
       - name: "subjects"
         field:
           element: "multiselect"
