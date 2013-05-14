@@ -9,14 +9,6 @@ prose:
   rooturl: "_posts"
   metadata:
     "_posts/projects":
-      - name: "categories"
-        field:
-          element: "select"
-          label: "Category"
-          placeholder: "Select category"
-          options:
-            - name: "projects"
-              value: "Project"
       - name: "subjects"
         field:
           element: "multiselect"
