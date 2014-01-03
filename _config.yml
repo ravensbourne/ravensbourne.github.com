@@ -29,17 +29,17 @@ prose:
       - name: "name"
         field:
           element: "text"
-          label: "Project Title"
+          label: "Paper Title"
           value: "My Project Title"
       - name: "author"
         field:
           element: "text"
-          label: "Project Creator"
+          label: "Paper Author"
           value: "John Doe"
       - name: "abstract"
         field:
           element: "text"
-          label: "Project Summary"
+          label: "Paper Summary"
           value: "Enter a short description of your project"
       - name: "image"
         field:
