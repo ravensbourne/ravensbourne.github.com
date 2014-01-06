@@ -7,6 +7,8 @@ image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
 website: "http://www.rave.co.uk/"
 subjects: 
   - Finance
+categories: 
+  - projects
 ---
 
 ## A New Post
