@@ -1,10 +1,12 @@
 ---
 published: false
-name: My Project Title
-author: John Doe
-abstract: Enter a short description of your project
+name: People
+author: Doreen De Bellotte
+abstract: People power
 image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
 website: "http://www.rave.co.uk/"
+subjects: 
+  - Human Resources
 ---
 
 ## A New Post
