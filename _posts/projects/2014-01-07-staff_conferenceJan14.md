@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 name: Staff conference plan Jan 2014
 author: Carole Mallett
 abstract: A proposal for agenda for 8th January 2014 Staff Conference
