@@ -1,12 +1,14 @@
 ---
 published: true
-name: Financial paper
-author: Fraser Burrill
-abstract: Lots of money
+name: 2D and 3D Technical Tutor staffing
+author: Will Pearson
+abstract: A paper making the case for technical tutor for 2D and 3D printing support
 image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
-website: "http://www.rave.co.uk/"
+website: "https://intranet.rave.ac.uk/display/smt/2014/01/06/Technical+Tutor+staffing"
 subjects: 
-  - Finance
+  - Human Resources
+  - Technology
+  - "2013"
 categories: 
   - projects
 ---
