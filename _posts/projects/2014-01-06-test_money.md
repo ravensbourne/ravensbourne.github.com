@@ -3,7 +3,7 @@ published: true
 name: 2D and 3D Technical Tutor staffing
 author: Will Pearson
 abstract: A paper making the case for technical tutor for 2D and 3D printing support
-image: "http://fc04.deviantart.net/fs70/f/2013/105/b/5/3d_printing_icons_by_aha_soft_icons-d61ts2u.png"
+image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
 website: "https://intranet.rave.ac.uk/display/smt/2014/01/06/Technical+Tutor+staffing"
 subjects: 
   - Human Resources
