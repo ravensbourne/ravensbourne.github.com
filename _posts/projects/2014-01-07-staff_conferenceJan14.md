@@ -3,7 +3,7 @@ published: true
 name: Staff conference plan Jan 2014
 author: Carole Mallett
 abstract: A proposal for agenda for 8th January 2014 Staff Conference
-image: "http://f.cl.ly/items/1o363t351s47371R3X2f/polished-off.png"
+image: "http://cl.ly/image/3F1J221z2o0z/prose_opacity.jpg"
 website: "https://intranet.rave.ac.uk/display/smt/2014/01/07/Staff+Conference+Agenda+8th+January+2014"
 subjects: 
   - Strategic Development
